@@ -64,7 +64,8 @@
 	};
 	genDepsHostTargetFor = { hawkSourceInfo, mono' ? mono }: [ lua mono' openal (lib.getOutput "out" zstd) ]
 		++ lib.optionals hawkSourceInfo.needsSDL [ SDL2 (lib.getOutput "out" udev) ]
-		++ lib.optional hawkSourceInfo.needsLibGLVND (lib.getOutput "out" libGL);
+		++ lib.optional hawkSourceInfo.needsLibGLVND (lib.getOutput "out" libGL)
+        ++ [ (import <nixpkgs> {}).gtk2-x11.out ];
 	/**
 	 * see splitReleaseArtifact re: outputs
 	 * and no you can't build only DiscoHawk and its deps; deal with it
